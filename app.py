@@ -245,6 +245,9 @@ def delete_worker(tx, name, surname):
         if(len(result) > 1):
             query = f"MATCH (m:Employee)-[r:WORKS_IN]-(d:Department {{name:'{result[0]['d']['name']}'}}) RETURN m"
             results = tx.run(query).data()
+            if(len(results) == 0):
+                query = f"MATCH (d:Department) WHERE d.name='{result[0]['d']['name']}' DETACH DELETE d"
+                tx.run(query, name=name, surname=surname)
             workers = [{'name': result['m']['name'], 'surname': result['m']['surname'], 'position': result['m']['position']} for result in results]
             query2 = f"""MATCH (a:Employee),(b:Department) WHERE a.name = '{workers[0]['name']}' AND a.surname = '{workers[0]['surname']}' AND b.name = '{result[0]['d']['name']}' CREATE (a)-[r:MANAGES]->(b) RETURN type(r)"""
             tx.run(query2)
