@@ -28,6 +28,6 @@ DELETE:
 
 /employees/**person** - deletes employee
 
-*when employee who manages the department is deleted, new employee will repace him
-*when there are no employees left the department will be deleted
+*when employee who manages the department is deleted, new employee will repace him  
+*when there are no employees left the department will be deleted  
 \*the variable **person** must be written in a pattern **NameSurname**
