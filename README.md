@@ -2,6 +2,8 @@
 
 Simple Neo4j + Python(Flask) with Company Management app
 
+example data in data.cypher file
+
 GET:
 
 endpoint returns:
